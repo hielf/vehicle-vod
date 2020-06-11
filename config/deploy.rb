@@ -4,7 +4,7 @@ lock "3.11.0"
 # server '47.92.122.216', roles: [:web, :app, :db], primary: true
 
 # set :repo_url, "git@git.coding.net:dreamlinx/vehicle-vod.git"
-set :repo_url, 'https://brokermgr:jerry1@git.coding.net/dreamlinx/vehicle-vod.git'
+set :repo_url, 'git@github.com:hielf/vehicle-vod.git'
 set :application, "vehicle-vod"
 set :user, "deploy"
 set :puma_threads, [4, 16]
