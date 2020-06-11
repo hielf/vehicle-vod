@@ -1,0 +1,72 @@
+<div class="page-header">
+  <h1>
+    <%= t('activerecord.models.user') %>
+    <small><i class="ace-icon fa fa-angle-double-right"></i>
+      显示
+    </small>
+    <small class="pull-right" style="margin: -7px -8px 0 0">
+      <a href="<%= edit_admin_user_path(@user) %>" title="编辑" class="btn btn-default">
+        <i class="fa fa-edit"></i></a>
+      <a href="<%= admin_users_path %>" title="列表" class="btn btn-default">
+        <i class="fa fa-list"></i></a>
+    </small>
+  </h1>
+</div>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %>
+      <button type="button" class="close" data-dismiss="alert">
+        <i class="ace-icon fa fa-times"></i>
+      </button>
+    </div>
+<% end %>
+
+
+<div class="profile-user-info profile-user-info-striped" style="margin: 0">
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.nickname') %></div>
+
+    <div class="profile-info-value">
+      <span class="editable" id="username"><%= @user.nickname %></span>
+    </div>
+  </div>
+
+
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.mobile') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @user.mobile %></span>
+    </div>
+  </div>
+
+
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.username') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @user.username %></span>
+    </div>
+  </div>
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.gender') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= show_gender @user.gender %></span>
+    </div>
+  </div>
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.roles') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= User::ROLES.values_at(*@user.roles).join(',') if @user.roles.present? %></span>
+    </div>
+  </div>
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.city_id') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @user.city.try(:name) %></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= search_form_for([:admin, @q], :builder => SimpleForm::FormBuilder, :defaults => {:required => false}) do |f| %>
+          <div class="col-md-2">
+            <%= f.input :username_cont, label: t('simple_form.labels.defaults.username') %>
+          </div>
+          <div class="col-md-2">
+            <%= f.input :nickname_cont, label: t('simple_form.labels.defaults.nickname') %>
+          </div>
+
+          <div class="col-md-2">
+            <%= f.input :mobile_cont, label: t('simple_form.labels.defaults.mobile') %>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group select optional q_roles_in">
+              <label class="control-label select optional" for="q_roles_in">角色</label>
+              <select class="form-control select optional" name="q[roles_in]" id="q_roles_in">
+                <option value=""></option>
+                <% User::ROLES.each do |role| %>
+                    <option value="<%= role[0] %>" <%= 'selected' if params[:q].present? && params[:q][:roles_in] == role[0].to_s %>><%= role[1] %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="padding-top-25">
+            <%= f.submit '搜索', class: 'btn btn-sm btn-primary' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

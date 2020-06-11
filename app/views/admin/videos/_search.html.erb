@@ -1,0 +1,31 @@
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <form action="/admin/videos" accept-charset="UTF-8" method="get">
+        <div class="col-md-2">
+          <div class="form-group string optional">
+            <label class="control-label string optional" for="name">名称</label>
+            <input class="form-control string optional" type="text" value="<%= params[:name] %>" name="name" id="name"/>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group string optional">
+            <label class="control-label string optional" for="status">状态</label>
+            <select class="form-control select optional" name="status" id="status">
+              <option value=""></option>
+              <% [[0, '待审核'], [1, '通过'], [2, '审核未通过']].each do |s| %>
+                  <option value="<%= s[0] %>" <%= "selected" if params[:status] ==s[0].to_s %>><%= s[1] %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+        <div class="padding-top-25">
+          <input type="submit" name="commit" value="搜索" class="btn btn-sm btn-primary" data-disable-with="搜索"/>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+</div>

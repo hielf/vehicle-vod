@@ -1,0 +1,68 @@
+<div class="page-header">
+  <h1>
+    <%= t('activerecord.models.column') %>
+    <small><i class="ace-icon fa fa-angle-double-right"></i>
+      列表
+    </small>
+    <small class="pull-right" style="margin: -7px -8px 0 0">
+      <a href="<%= new_admin_column_path %>" class="btn btn-default" title="添加<%= t('activerecord.models.column') %>">
+        <i class="icon-only fa fa-plus"></i></a>
+      <a href="#" class="btn btn-default btn-search-toggle" title="搜索">
+        <i class="icon-only fa fa-search"></i></a>
+    </small>
+  </h1>
+</div>
+<div class="row form-search-toggle <%= params[:commit].present? ? 'show' : 'hide' %>">
+  <%= render 'search' %>
+</div>
+
+
+<% if @columns.present? %>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th><%= t('simple_form.labels.defaults.name') %></th>
+        <th><%= t('simple_form.labels.defaults.en_name') %></th>
+        <th><%= t('simple_form.labels.defaults.category_id') %></th>
+        <th><%= t('simple_form.labels.defaults.keyword') %></th>
+        <th><%= sort_link(@q, :status, '是否上线', default_order: :desc) %></th>
+        <th><%= t('simple_form.labels.defaults.is_hot') %></th>
+        <th><%= sort_link(@q, :sort, t('simple_form.labels.defaults.sort'), default_order: :asc) %></th>
+        <th><%= sort_link(@q, :videos_count, t('simple_form.labels.defaults.videos_count'), default_order: :desc) %></th>
+        <th>操作</th>
+      </tr>
+      </thead>
+
+
+      <tbody>
+      <% @columns.each do |column| %>
+          <tr id="<%= "column-#{column.id}" %>">
+            <td><%= column.id %></td>
+            <td><%= column.name %></td>
+            <td><%= column.en_name %></td>
+            <td><%= column.category.try(:name) %></td>
+            <td><%= column.keyword %></td>
+            <td><%= on_line_status column.status %></td>
+            <td><%= show_status column.is_hot %></td>
+            <td><%= column.sort %></td>
+            <td><%= column.videos_count %></td>
+            <td>
+              <%= link_to edit_admin_column_path(column), title: '编辑', class: 'btn btn-xs btn-info btn-lh-1' do %>
+                  <i class="fa fa-edit icon-only"></i>
+              <% end %>
+              <%= link_to [:admin, column], method: :delete, data: {confirm: '确认删除该栏目吗?'}, remote: true, title: '删除', class: 'btn btn-xs btn-danger btn-lh-1 icon-width-28' do %>
+                  <i class="fa fa-trash-o icon-only"></i>
+              <% end %>
+
+              </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <nav class="pull-right"><%= paginate @columns %></nav>
+<% else %>
+    <div class="alert alert-info">暂无栏目</div>
+<% end %>
+
+
+

@@ -1,0 +1,13 @@
+//= require jquery_ujs
+//=// require jquery-ui
+//= require bootstrap.min
+//= require common
+//= require admin/ace-elements.min
+//= require admin/ace.min
+//= require admin/bootstrap-datepicker.min
+//= require admin/bootstrap-timepicker.min
+//= require admin/moment.min
+//= require admin/bootstrap-datetimepicker.min
+//= require admin/jquery.gritter.min
+//= require bootbox.min
+//= require admin/chosen.jquery.min

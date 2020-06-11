@@ -1,0 +1,40 @@
+.top-xf-style {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    background-color: whitesmoke;
+    top: 0;
+}
+
+.btn-lh-1 {
+    line-height: 1
+}
+
+.icon-width-28 {
+    width: 28px
+}
+
+.vertical-align-top {
+    vertical-align: top;
+}
+
+.profile-info-value span {
+    display: inline-block;
+    height: 13px
+}
+
+.show-row-margin {
+    min-height: 30px;
+    padding: 10px;
+    border-top: 1px dotted #D5E4F1;
+}
+
+.padding-top-25 {
+    padding-top: 25px;
+}
+
+@media print {
+    a[href]:after {
+        content: none !important;
+    }
+}

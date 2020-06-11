@@ -1,0 +1,74 @@
+<div class="page-header">
+  <h1>
+    <%= t('activerecord.models.video') %>
+    <small><i class="ace-icon fa fa-angle-double-right"></i>
+      列表
+    </small>
+    <small class="pull-right" style="margin: -7px -8px 0 0">
+      <a href="<%= new_admin_video_path %>" class="btn btn-default" title="添加<%= t('activerecord.models.video') %>">
+        <i class="icon-only fa fa-plus"></i></a>
+      <a href="#" class="btn btn-default btn-search-toggle" title="搜索">
+        <i class="icon-only fa fa-search"></i></a>
+    </small>
+  </h1>
+</div>
+
+<div class="row form-search-toggle <%= params[:commit].present? ? 'show' : 'hide' %>">
+  <%= render 'search' if 1==1 %>
+</div>
+
+
+<% if @videos.present? %>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th><%= t('simple_form.labels.defaults.name') %></th>
+        <th><%= t('simple_form.labels.defaults.column_ids') %></th>
+        <th><%= t('simple_form.labels.defaults.cover') %></th>
+        <th><%= t('simple_form.labels.defaults.src') %></th>
+        <th><%= t('simple_form.labels.defaults.video_duration') %>
+        <th><%= t('simple_form.labels.defaults.user_id') %>
+        <th><%= t('simple_form.labels.defaults.status') %></th>
+        <th>创建时间</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+
+
+      <tbody>
+      <% @videos.each do |video| %>
+          <tr>
+            <td><%= video.id %></td>
+            <td><%= video.name %></td>
+            <td><%= video.column_names %></td>
+
+            <td><%= link_to image_tag(video.video_cover, size: "32x24") if video.video_cover.present? %></td>
+            <td>
+              <% if video.video_src.present? %>
+                  <%= link_to '观看', video.video_src if video.video_src.present? %>
+              <% end %>
+            </td>
+            <td><%= video.duration %></td>
+            <td><%= video.nickname %></td>
+            <td><%= t("status.is_audit#{video.status}") %></td>
+            <td><%= video.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+            <td>
+              <%= link_to edit_admin_video_path(video), title: '编辑', class: 'btn btn-xs btn-info btn-lh-1' do %>
+                  <i class="fa fa-edit icon-only"></i>
+              <% end %>
+              <%= link_to [:admin, video], method: :delete, data: {confirm: '确认删除该视频吗?'}, title: '删除', class: 'btn btn-xs btn-danger btn-lh-1 icon-width-28' do %>
+                  <i class="fa fa-trash-o icon-only"></i>
+              <% end %>
+
+              </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <nav class="pull-right"><%= paginate @videos %></nav>
+<% else %>
+    <div class="alert alert-info">暂无视频</div>
+<% end %>
+
+
+

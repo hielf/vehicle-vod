@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1>
+    <%= t('activerecord.models.category') %>
+    <small><i class="ace-icon fa fa-angle-double-right"></i>
+      列表
+    </small>
+    <small class="pull-right" style="margin: -7px -8px 0 0">
+      <a href="<%= new_admin_category_path %>" class="btn btn-default" title="添加<%= t('activerecord.models.category') %>">
+        <i class="icon-only fa fa-plus"></i></a>
+    </small>
+  </h1>
+</div>
+
+
+<% if @categories.present? %>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th><%= t('simple_form.labels.defaults.name') %></th>
+        <th><%= '是否上线' %></th>
+        <th><%= t('simple_form.labels.defaults.sort') %></th>
+        <th>操作</th>
+      </tr>
+      </thead>
+
+
+      <tbody>
+      <% @categories.each do |category| %>
+          <tr id="<%= "category-#{category.id}" %>">
+            <td><%= category.id %></td>
+            <td><%= category.name %></td>
+            <td><%= on_line_status category.status %></td>
+            <td><%= category.sort %></td>
+            <td>
+              <%= link_to edit_admin_category_path(category), title: '编辑', class: 'btn btn-xs btn-info btn-lh-1' do %>
+                  <i class="fa fa-edit icon-only"></i>
+              <% end %>
+              <%= link_to [:admin, category], method: :delete, data: {confirm: '确认删除该分类吗?'}, remote: true, title: '删除', class: 'btn btn-xs btn-danger btn-lh-1 icon-width-28' do %>
+                  <i class="fa fa-trash-o icon-only"></i>
+              <% end %>
+
+              </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <nav class="pull-right"><%= paginate @categories %></nav>
+<% else %>
+    <div class="alert alert-info">暂无数据</div>
+<% end %>
+
+
+

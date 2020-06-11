@@ -1,0 +1,57 @@
+zh-CN:
+  simple_form:
+    "yes": '是'
+    "no": '否'
+    required:
+      text: '必填'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "请查看以下问题:"
+    labels:
+      defaults:
+        nickname: 用户名
+        name: '名称'
+        en_name: 英文名
+        username: '姓名'
+        gender: '性别'
+        email: '邮箱'
+        mobile: '手机'
+        password: '密码'
+        start_time: '开始时间'
+        end_time: '结束时间'
+        src: 地址
+        status: 状态
+        user_id: 所属用户
+        column_ids: 栏目
+        favors_count: 收藏数
+        likes_count: 点赞数
+        videos_count: 视频数
+        cover: 封面
+        pv: 播放数
+        sort: 排序
+        is_hot: 是否热门
+        obj_id: 所属ID
+        obj_type: 所属类别
+        cover: 封面
+        abbr: 简写字母
+        category_id: 分类
+        city_id: 城市
+        video_duration: 时长
+        keyword: 关键字
+        roles: 角色
+        video_src: 视频地址
+        video_cover: 视频封面
+
+
+
+
+  acticerecord:
+    errors:
+      models:
+        video:
+          attributes:
+            src:
+              file_size_is_less_than: "视频大小不能大于1G"

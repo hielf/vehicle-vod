@@ -1,0 +1,81 @@
+<div class="page-header">
+  <h1>
+    <%= t('activerecord.models.column') %>
+    <small><i class="ace-icon fa fa-angle-double-right"></i>
+      显示
+    </small>
+    <small class="pull-right" style="margin: -7px -8px 0 0">
+      <a href="<%= edit_admin_column_path(@column) %>" title="编辑" class="btn btn-default">
+        <i class="fa fa-edit"></i></a>
+      <a href="<%= admin_columns_path %>" title="列表" class="btn btn-default">
+        <i class="fa fa-list"></i></a>
+    </small>
+  </h1>
+</div>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %>
+      <button type="button" class="close" data-dismiss="alert">
+        <i class="ace-icon fa fa-times"></i>
+      </button>
+    </div>
+<% end %>
+
+
+<div class="profile-user-info profile-user-info-striped" style="margin: 0">
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.name') %></div>
+
+    <div class="profile-info-value">
+      <span class="editable" id="username"><%= @column.name %></span>
+    </div>
+  </div>
+
+
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.en_name') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @column.en_name %></span>
+    </div>
+  </div>
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.keyword') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @column.keyword %></span>
+    </div>
+  </div>
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.category_id') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @column.category.try(:name) %></span>
+    </div>
+  </div>
+
+
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.sort') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @column.sort %></span>
+    </div>
+  </div>
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.status') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= t("status.on_line#{@column.status}") %></span>
+    </div>
+  </div>
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.is_hot') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= show_status @column.is_hot %></span>
+    </div>
+  </div>
+
+
+</div>

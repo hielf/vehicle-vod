@@ -1,0 +1,98 @@
+<% controller_params = params[:controller] %>
+
+<li class="hover <%= controller_params == 'admin/users' ? 'active' : '' %>">
+  <a href="<%= admin_users_path %>">
+    <i class="menu-icon fa fa-users"></i>
+    <span class="menu-text"> 用户 </span>
+  </a>
+  <b class="arrow"></b>
+</li>
+<li class="hover <%= controller_params == 'admin/categories' ? 'active' : '' %>">
+  <a href="<%= admin_categories_path %>">
+    <i class="menu-icon fa fa-pie-chart"></i>
+    <span class="menu-text"> <%= t('activerecord.models.category') %> </span>
+  </a>
+  <b class="arrow"></b>
+</li>
+<li class="hover <%= controller_params == 'admin/columns' ? 'active' : '' %>">
+  <a href="<%= admin_columns_path %>">
+    <i class="menu-icon fa fa-bar-chart"></i>
+    <span class="menu-text"> <%= t('activerecord.models.column') %> </span>
+  </a>
+  <b class="arrow"></b>
+</li>
+<li class="hover <%= controller_params == 'admin/videos' ? 'active' : '' %>">
+  <a href="<%= admin_videos_path %>">
+    <i class="menu-icon fa fa-file-video-o"></i>
+    <span class="menu-text"> <%= t('activerecord.models.video') %> </span>
+  </a>
+  <b class="arrow"></b>
+</li>
+<li class="hover <%= controller_params == 'admin/start_pages' ? 'active' : '' %>">
+  <a href="<%= admin_start_pages_path %>">
+    <i class="menu-icon fa fa-bullhorn"></i>
+    <span class="menu-text"><%= t('activerecord.models.start_page') %></span>
+  </a>
+  <b class="arrow"></b>
+</li>
+<li class="hover <%= controller_params == 'admin/cities' ? 'active' : '' %>">
+  <a href="<%= admin_cities_path %>">
+    <i class="menu-icon fa fa-map-marker"></i>
+    <span class="menu-text"><%= t('activerecord.models.city') %></span>
+  </a>
+  <b class="arrow"></b>
+</li>
+
+
+
+<li class="hover">
+  <a href="#" class="dropdown-toggle">
+    <i class="menu-icon fa fa-th"></i>
+
+    <span class="menu-text">换肤</span>
+
+    <b class="arrow fa fa-angle-down"></b>
+  </a>
+
+  <b class="arrow"></b>
+
+  <ul class="submenu">
+    <% skin_cookie = cookies[:skin_cookie] %>
+    <li class="hover admin-select-skin <%= skin_cookie == 'no-skin' ? 'active' : '' %>" data-name="no-skin">
+      <a href="#">
+        <i class="menu-icon fa fa-caret-right"></i>
+        <span class="menu-text">默认</span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li class="hover admin-select-skin <%= skin_cookie == 'skin-2' ? 'active' : '' %>" data-name="skin-2">
+      <a href="#">
+        <i class="menu-icon fa fa-caret-right"></i>
+        <span class="menu-text">粉色</span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li class="hover admin-select-skin <%= skin_cookie == 'skin-1' ? 'active' : '' %>" data-name="skin-1">
+      <a href="#">
+        <i class="menu-icon fa fa-caret-right"></i>
+        <span class="menu-text">蓝黑</span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li class="hover admin-select-skin" <%= skin_cookie == 'skin-3' ? 'active' : '' %> data-name="skin-3">
+      <a href="#">
+        <i class="menu-icon fa fa-caret-right"></i>
+        <span class="menu-text">黑灰</span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+  </ul>
+</li>
+<li class="hover sidebar-collapse hidden-sm hidden-xs">
+  <a href="#">
+    <i class="menu-icon ace-icon fa fa-angle-double-up" data-icon1="ace-icon fa fa-angle-double-up" data-icon2="ace-icon fa fa-angle-double-down"></i>
+    <span class="menu-text">伸缩</span>
+  </a>
+  <b class="arrow"></b>
+</li>
+

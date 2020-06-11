@@ -1,0 +1,16 @@
+/*
+*= require bootstrap.min
+*= require font-awesome
+*= require admin/fonts.googleapis.com.css
+*= require admin/jquery.gritter.min
+*= require admin/chosen.min
+*= require admin/ace.min
+*= require admin/ace-skins.min
+*= require admin/ace-rtl.min
+*= require admin/bootstrap-datepicker3.min
+*= require admin/bootstrap-timepicker.min
+*= require admin/bootstrap-datetimepicker.min
+*= require admin/lay-custom
+
+*= require_self
+*/

@@ -1,0 +1,65 @@
+<%= simple_form_for([:admin, @video], html: {multipart: true}) do |f| %>
+    <%= f.error_notification %>
+    <% if @video.errors.any? %>
+        <div class="alert alert-danger">
+          <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+          </button>
+          <%= @video.errors.full_messages[0] %></div>
+    <% end %>
+
+    <div class="form-inputs">
+
+      <%= f.input :name %>
+      <label><abbr title="必填">*</abbr> 栏目</label>
+      <select multiple="" name="video[column_ids][]" class="chosen-select form-control tag-input-style" id="form-field-select-4" data-placeholder="请选择标签...">
+        <% columns = Column.on_line.find_each(batch_size: 5000) %>
+        <% if columns.present? %>
+            <% columns.each do |column| %>
+                <option value="<%= column.id %>" <%= 'selected' if @video.column_ids.include?(column.id) %>><%= column.name %></option>
+            <% end %>
+        <% end %>
+      </select>
+      <br><br>
+      <% if @video.video_cover.present? %>
+          <div class="form-group">
+            <%= image_tag(@video.video_cover, alt: 'cover') %>
+          </div>
+      <% else %>
+          <% if @video.cover? %>
+              <div class="form-group">
+                <%= image_tag(@video.cover_url, alt: 'cover') %>
+              </div>
+          <% end %>
+      <% end %>
+      <div class="form-group">
+        <label class="text required control-label" for="video_cover">
+          封面
+        </label>
+        <%= f.file_field :cover %>
+        <%= f.hidden_field :cover_cache %>
+        <p class="help-block">格式：jpg jpeg gif png</p>
+      </div>
+
+      <% if @video.video_src.present? %>
+          <div class="form-group">
+            <%= video_tag(@video.video_src, size: "400x300", controls: true) %>
+          </div>
+      <% end %>
+      <div class="form-group">
+        <label class="text control-label" for="video_src">
+          视频文件
+        </label>
+        <%= f.file_field :src %>
+        <%= f.hidden_field :src_cache %>
+        <p class="help-block">格式：swf flv mp3 mp4 wav wma wmv mid avi mpg asf rm rmvb</p>
+      </div>
+      <%= f.input :status, collection: [['通过', 1], ['待审核', 0], ['未通过', 2]] %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+

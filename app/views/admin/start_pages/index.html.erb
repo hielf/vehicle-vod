@@ -1,0 +1,57 @@
+<div class="page-header">
+  <h1>
+    <%= t('activerecord.models.start_page') %>
+    <small><i class="ace-icon fa fa-angle-double-right"></i>
+      列表
+    </small>
+    <small class="pull-right" style="margin: -7px -8px 0 0">
+      <a href="<%= new_admin_start_page_path %>" class="btn btn-default" title="添加<%= t('activerecord.models.start_page') %>">
+        <i class="icon-only fa fa-plus"></i></a>
+    </small>
+  </h1>
+</div>
+
+
+<% if @start_pages.present? %>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th><%= t('simple_form.labels.defaults.name') %></th>
+        <th>跳转地址</th>
+        <th>起始时间</th>
+        <th><%= t('simple_form.labels.defaults.status') %></th>
+        <th>操作</th>
+      </tr>
+      </thead>
+
+
+      <tbody>
+      <% time_now = Time.zone.now %>
+      <% @start_pages.each do |start_page| %>
+          <tr>
+            <td><%= start_page.id %></td>
+            <td><%= start_page.name %></td>
+            <td><%= start_page.url %></td>
+            <td><%= "#{start_page.start_time.try(:strftime, "%Y-%m-%d %H:%M")} -- #{start_page.end_time.try(:strftime, "%Y-%m-%d %H:%M")}" %></td>
+            <td><%= show_status (start_page.start_time.to_i..start_page.end_time.to_i).include? time_now.to_i %></td>
+
+            <td>
+              <%= link_to edit_admin_start_page_path(start_page), title: '编辑', class: 'btn btn-xs btn-info btn-lh-1' do %>
+                  <i class="fa fa-edit icon-only"></i>
+              <% end %>
+              <%= link_to [:admin, start_page], method: :delete, data: {confirm: '确认删除该启动页吗?'}, title: '删除', class: 'btn btn-xs btn-danger btn-lh-1 icon-width-28' do %>
+                  <i class="fa fa-trash-o icon-only"></i>
+              <% end %>
+
+              </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <nav class="pull-right"><%= paginate @start_pages %></nav>
+<% else %>
+    <div class="alert alert-info">暂无启动页</div>
+<% end %>
+
+
+

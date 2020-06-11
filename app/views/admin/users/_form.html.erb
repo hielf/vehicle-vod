@@ -1,0 +1,34 @@
+<%= simple_form_for([:admin, @user]) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+
+      <%= f.input :nickname %>
+      <%= f.input :mobile %>
+      <%= f.input :username %>
+      <%= f.input :city_id, collection: City.select(:id, :name) %>
+      <%= f.input :gender, collection: [['男', 1], ['女', 2]] %>
+      <label class="control-label">角色</label>
+
+      <div class="well">
+        <%
+          roles = @user.roles
+          User::ROLES.each do |id, name|
+        %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="user[roles][]" value="<%= id %>" <%= roles.try(:include?, id) ? 'checked' : '' %>> <%= name %>
+              </label>
+            </div>
+        <%
+          end
+        %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+

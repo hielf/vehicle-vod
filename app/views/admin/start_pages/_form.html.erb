@@ -1,0 +1,40 @@
+<%= simple_form_for([:admin, @start_page]) do |f| %>
+    <% if @start_page.errors.any? %>
+        <div class="alert alert-danger">
+          <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+          </button>
+          <%= @start_page.errors.full_messages[0] %> </div>
+    <% end %>
+    <%= f.input :name %>
+    <% if @start_page.cover? %>
+        <div class="form-group">
+          <%= image_tag(@start_page.cover_url, class: 'img-thumbnail', alt: 'cover') %>
+        </div>
+    <% end %>
+    <%= f.input :cover, label: '封面' %>
+    <%= f.input :url, label: '跳转地址' %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-2">
+            <label><abbr title="必填">*</abbr>开始时间</label>
+            <div class="input-group">
+              <input value="<%= @start_page.start_time %>" type="text" name="start_page[start_time]" class="date-timepicker form-control"/>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <label><abbr title="必填">*</abbr>结束时间</label>
+            <div class="input-group">
+              <input type="text" value="<%= @start_page.end_time %>" name="start_page[end_time]" class="date-timepicker form-control"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+

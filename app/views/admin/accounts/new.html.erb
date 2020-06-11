@@ -1,0 +1,7 @@
+<h1>123</h1>
+<%= simple_form_for(:account, url: '/admin/account') do |f| %>
+    <%= f.input :mobile %>
+    <%= f.input :password %>
+    <%= f.button :submit, '登录' %>
+<% end %>
+<%= link_to '返回', :back %>

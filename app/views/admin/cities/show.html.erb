@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1>
+    <%= t('activerecord.models.city') %>
+    <small><i class="ace-icon fa fa-angle-double-right"></i>
+      显示
+    </small>
+    <small class="pull-right" style="margin: -7px -8px 0 0">
+      <a href="<%= edit_admin_city_path(@city) %>" title="编辑" class="btn btn-default">
+        <i class="fa fa-edit"></i></a>
+      <a href="<%= admin_cities_path %>" title="列表" class="btn btn-default">
+        <i class="fa fa-list"></i></a>
+    </small>
+  </h1>
+</div>
+
+<% if notice %>
+    <div class="alert alert-success"><%= notice %>
+      <button type="button" class="close" data-dismiss="alert">
+        <i class="ace-icon fa fa-times"></i>
+      </button>
+    </div>
+<% end %>
+
+
+<div class="profile-user-info profile-user-info-striped" style="margin: 0">
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.name') %></div>
+
+    <div class="profile-info-value">
+      <span class="editable" id="username"><%= @city.name %></span>
+    </div>
+  </div>
+
+
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.abbr') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @city.abbr %></span>
+    </div>
+  </div>
+
+
+  <div class="profile-info-row">
+    <div class="profile-info-name"> <%= t('simple_form.labels.defaults.sort') %> </div>
+
+    <div class="profile-info-value">
+      <span><%= @city.sort %></span>
+    </div>
+  </div>
+
+
+</div>

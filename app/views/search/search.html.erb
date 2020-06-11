@@ -1,0 +1,94 @@
+<div class="panel-body">
+  <h1>search</h1>
+
+  <%= form_for :q, url: search_path, method: :get do |form| %>
+      <p>
+        <input class="form-control" name="q" type="text" value="<%= params[:q] %>" placeholder="搜索本站内容"/>
+      <div class="form-group">
+        <select name="status" class="form-control">
+          <option value="1" <%= 'selected' if params[:status] == '1' %>>通过</option>
+          <option value="2" <%= 'selected' if params[:status] == '2' %>>未通过</option>
+          <option value="0" <%= 'selected' if params[:status] == '0' %>>待审核</option>
+        </select>
+      </div>
+      <input class="form-control" name="page" type="text" value="<%= params[:page] %>" placeholder="第几页"/>
+      <input class="form-control" name="per" type="text" value="<%= params[:per] %>" placeholder="每页几条"/>
+      <br>
+      <%= submit_tag "Search", name: nil %>
+
+      </p>
+  <% end %>
+
+
+  <br><br>
+  <h2>搜索结果</h2>
+
+  <style>
+    .aaa {
+      color: #F86334;
+    }
+  </style>
+
+
+  <% if @bb %>
+      <% @bb.each do |a| %>
+          <p><%= a %></p>
+      <% end %>
+  <% end %>
+
+
+
+  <% if 1==2 %>
+      <% videos = Video.find(39) %>
+      <% if videos.related_videos.present? %>
+          <div class="panel panel-default">
+            <div class="panel-heading">相关视频</div>
+            <ul class="list-group">
+              <% videos.related_videos.each do |topic| %>
+                  <li class="list-group-item"><%= link_to topic.name, topic %>
+                    <span> <%= topic.pv %></span></li>
+                  <li>
+                    <% topic.to_json %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% else %>
+          不存在
+      <% end %>
+
+  <% else %>
+      <% if @result.records.total == 0 %>
+          <div class="no-result">没有搜索到任何有关 “<%= params[:q] %>” 的内容</div>
+      <% else %>
+          <% if 1==2 %>
+              <% @result.records.each_with_hit do |item, hit| %>
+                  <li>
+                    <%= hit.highlight.name.first.html_safe || item.name %>
+                    <%
+                      title = item.name#hit.highlight.name.try(:first) || item.name
+                    %>
+                    <% title %>
+                  </li>
+              <% end %>
+          <% else %>
+              <div class="panel-heading clearfix">
+                关于 “<%= params[:q] %>” 的搜索结果, 共 <%= @result.records.total %> 条
+              </div>
+              <% @result.each do |x| %>
+                  <p>avatar:<%= x["_source"]["user"]["avatar"] %></p>
+                  id:<%= x["_id"] %>--user_id: <%= x["_source"]["user_id"] %>
+                  --nickname:<%= x["_source"]["user"]["nickname"] %>
+                  -created_at: <%= x["_source"]["created_at"].to_datetime.strftime('%Y-%m-%d %H:%M') %> <%= x["highlight"].name[0].html_safe %>
+
+                  <p>
+                    <% x.to_json %></p>
+              <% end %>
+
+              <div class="panel-footer clearfix">
+                <%= paginate @result %>
+              </div>
+          <% end %>
+
+      <% end %>
+  <% end %>
+</div>
